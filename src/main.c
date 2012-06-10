@@ -61,7 +61,6 @@ int main(int argc, char* argv[])
 			case 'w':
 				parse_write(buffer, &w_page, &w_id);
 				write_p(w_page, w_id);
-
 				break;
 
 			case 'E': /* ENDPROC ID */
