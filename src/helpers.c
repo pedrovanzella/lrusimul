@@ -4,7 +4,7 @@
 
 void parse_memsize(char* buffer, int* size)
 {
-	char* s = (char*)malloc(4);
+	char s[4];
 	int pos = 0;
 
 	while (*buffer) {
@@ -19,7 +19,6 @@ void parse_memsize(char* buffer, int* size)
 
 void parse_procsize(char* buffer, int* id, int* size)
 {
-
 }
 
 void parse_read(char* buffer, int* page, int* id)
@@ -34,7 +33,7 @@ void parse_write(char* buffer, int* page, int* id)
 
 void parse_endproc(char* buffer, int* id)
 {
-	char* i = (char*)malloc(4);
+	char i[4];
 	int pos = 0;
 	
 	while (*buffer) {
