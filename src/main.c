@@ -75,6 +75,8 @@ int main(int argc, char* argv[])
 		}
 	}
 
+	/* Write stats here? */
+
 	fclose(fp);
 	return EXIT_SUCCESS;
 }

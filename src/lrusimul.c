@@ -5,8 +5,6 @@
 #include "../include/helpers.h"
 #include "../include/lrusimul.h"
 
-
-
 void memsize(int size)
 {
 
