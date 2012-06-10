@@ -19,11 +19,37 @@ int main(int argc, char* argv[])
 		return EXIT_FAILURE;
 	}
 
+	/* Main loop */
 	char* buffer;
-
 	int nbytes = 128;
 	while ((getline(&buffer, (size_t*)&nbytes, fp) != -1)) {
 		printf("[+] %s", buffer); // buffer already has \n
+
+		/* Todas as operações começam com letras diferentes */
+		switch(buffer[0]) {
+			case 'M': /* MEMSIZE SIZE */
+			case 'm':
+				break;
+
+			case 'P': /* PROCSIZE ID SIZE */
+			case 'p':
+				break;
+
+			case 'R': /* READ PAGE ID */
+			case 'r':
+				break;
+
+			case 'W': /* WRITE PAGE ID */
+			case 'w':
+				break;
+
+			case 'E': /* ENDPROC ID */
+			case 'e':
+				break;
+
+			default:
+				printf("[-] Invalid Operation!\n");
+		}
 	}
 
 	fclose(fp);
