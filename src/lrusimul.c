@@ -19,7 +19,12 @@ int main(int argc, char* argv[])
 		return EXIT_FAILURE;
 	}
 
+	char* buffer;
 
+	int nbytes = 128;
+	while ((getline(&buffer, (size_t*)&nbytes, fp) != -1)) {
+		printf("[+] %s", buffer); // buffer already has \n
+	}
 
 	fclose(fp);
 	return EXIT_SUCCESS;
