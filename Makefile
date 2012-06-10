@@ -7,10 +7,14 @@ prepare:
 	mkdir -p bin
 	mkdir -p perf
 
-bin/lrusimul: bin/lrusimul.o bin/fifo.o bin/page.o bin/helpers.o
-	$(CC) $(CFLAGS) -o bin/lrusimul bin/lrusimul.o bin/fifo.o bin/page.o bin/helpers.o
+bin/lrusimul: bin/main.o bin/lrusimul.o bin/fifo.o bin/page.o bin/helpers.o
+	$(CC) $(CFLAGS) -o bin/lrusimul bin/main.o bin/lrusimul.o bin/fifo.o bin/page.o bin/helpers.o
 
-bin/lrusimul.o: src/lrusimul.c include/fifo.h include/helpers.h
+bin/main.o: src/main.c include/helpers.h include/lrusimul.h
+	$(CC) $(CFLAGS) -c src/main.c
+	mv main.o bin/main.o
+
+bin/lrusimul.o: src/lrusimul.c include/lrusimul.h include/fifo.h include/helpers.h
 	$(CC) $(CFLAGS) -c src/lrusimul.c
 	mv lrusimul.o bin/lrusimul.o
 
