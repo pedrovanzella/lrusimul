@@ -4,7 +4,7 @@
 #include "../include/helpers.h"
 #include "../include/lrusimul.h"
 
-extern struct process* processes[MAX_PROCESSES];
+extern struct process* processes[];
 
 void parse_memsize(char* buffer, int* size)
 {

@@ -4,12 +4,14 @@
 #include "../include/helpers.h"
 #include "../include/lrusimul.h"
 #include "../include/process.h"
+#include "../include/memory.h"
 
 extern struct process* processes[];
+extern struct memory* memory;
 
 void memsize(int size)
 {
-
+	memory = make_memory(size);
 }
 
 void procsize(int id, int size)
