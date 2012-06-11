@@ -6,6 +6,9 @@ struct page {
 	int page_id;
 	char referenciada;
 	char suja;
+	int acessos;
+	int page_faults;
+	int substituicoes;
 };
 
 struct page* create_page(int process_id, int page_id);
