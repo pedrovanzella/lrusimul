@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../include/fifo.h"
 #include "../include/helpers.h"
 #include "../include/lrusimul.h"
 #include "../include/process.h"
