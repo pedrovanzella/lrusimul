@@ -32,6 +32,16 @@ void write_p(int page, int id)
 
 void endproc(int id)
 {
+	struct process* p = processes[id];
+	if (!p) {
+		fprintf(stderr, "[-] ERROR: Trying to end a unexisting process!\n");
+	}
 
+	int i;
+
+	for (i = 0; i <= p->numpages - 1; i++) {
+		free(p->pages[i]);
+	}
+	free(p);
 }
 
