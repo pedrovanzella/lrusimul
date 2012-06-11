@@ -136,4 +136,15 @@ void init_process_table()
 
 void write_stats()
 {
+	FILE* fp = fopen("perf/log.txt", "w+");
+	if (!fp) {
+		fprintf(stderr, "[-] ERROR: Failed to open file perf/log.txt for writing!\n");
+		exit(EXIT_FAILURE);
+	}
+
+	int i;
+	for (i = 0; i < MAX_PROCESSES; i++) {
+		if (processes[i]) { // Process has been allocated
+		}
+	}
 }

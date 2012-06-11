@@ -39,8 +39,7 @@ void endproc(int id)
 	int i;
 
 	for (i = 0; i <= p->numpages - 1; i++) {
-		free(p->pages[i]);
+		p->pages[i]->not_in_use_anymore = 1;
 	}
-	free(p);
 }
 

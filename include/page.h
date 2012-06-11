@@ -6,6 +6,7 @@ struct page {
 	int page_id;
 	char referenciada;
 	char suja;
+	char not_in_use_anymore;
 	int acessos;
 	int page_faults;
 	int substituicoes;
