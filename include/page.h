@@ -8,4 +8,6 @@ struct page {
 	char suja;
 };
 
+struct page* create_page(int process_id, int page_id);
+
 #endif /* _PAGE_H_ */
