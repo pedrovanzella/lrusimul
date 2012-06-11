@@ -35,37 +35,41 @@ int main(int argc, char* argv[])
 
 	/* Main loop */
 	while ((getline(&buffer, (size_t*)&nbytes, fp) != -1)) {
-		printf("[+] %s", buffer); // buffer already has \n
 
 		/* Todas as operações começam com letras diferentes */
 		switch(buffer[0]) {
 			case 'M': /* MEMSIZE SIZE */
 			case 'm':
 				parse_memsize(buffer, &m_size);
+				printf("[+] MEMSIZE %d\n", m_size);
 				memsize(m_size);
 				break;
 
 			case 'P': /* PROCSIZE ID SIZE */
 			case 'p':
 				parse_procsize(buffer, &p_id, &p_size);
+				printf("[+] PROCSIZE %d %d\n", p_id, p_size);
 				procsize(p_id, p_size);
 				break;
 
 			case 'R': /* READ PAGE ID */
 			case 'r':
 				parse_read(buffer, &r_page, &r_id);
+				printf("[+] READ %d %d\n", r_page, r_id);
 				read_p(r_page, r_id);
 				break;
 
 			case 'W': /* WRITE PAGE ID */
 			case 'w':
 				parse_write(buffer, &w_page, &w_id);
+				printf("[+] WRITE %d %d\n", w_page, w_id);
 				write_p(w_page, w_id);
 				break;
 
 			case 'E': /* ENDPROC ID */
 			case 'e':
 				parse_endproc(buffer, &e_id);
+				printf("[+] ENDPROC %d\n", e_id);
 				endproc(e_id);
 				break;
 
