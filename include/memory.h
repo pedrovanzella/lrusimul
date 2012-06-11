@@ -18,5 +18,6 @@ struct memory* make_memory(int size);
  * Caso a memória esteja cheia, substitui alguma página */
 void find_page_and_maybe_substitute(int page, int id);
 void substitute(int page, int id);
+void go_to_next_memory_position();
 
 #endif /* _MEMORY_H_ */

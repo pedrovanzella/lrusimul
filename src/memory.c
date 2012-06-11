@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "../include/memory.h"
 #include "../include/process.h"
@@ -20,24 +21,51 @@ struct memory* make_memory(int size)
 		m->pages[i] = NULL; // Garantir que as páginas sejam nulas no início
 	}
 
-	prox_vitima = m->pages[0]; // Próxima vítima é a primeira página
 	count = 0;
+	prox_vitima = m->pages[count]; // Próxima vítima é a primeira página
 
 	return m;
 }
 
+void go_to_next_memory_position()
+{
+	count++;
+	if (count >= memory->size) {
+		count = 0;
+	}
+	prox_vitima = memory->pages[count];
+}
+
 void substitute(int page, int id)
 {
+	printf("\t[+] substitute: [page (%d)] [id (%d)]\n", page, id);
+	fflush(stdout);
 	/* Se próxima vítima é uma página vazia, coloca a página na memória */
+	if (!prox_vitima) {
+		memory->pages[count] = processes[id]->pages[page];
+		
+		go_to_next_memory_position();
+	}
 
 	/* Se próxima vítima foi desalocada, coloca a página na memória */
+	else if (prox_vitima->not_in_use_anymore) {
+		memory->pages[count] = processes[id]->pages[page];
+
+		go_to_next_memory_position();
+	}
 
 	/* Se a página está referenciada, seta referenciada para zero */
+	else if (prox_vitima->referenciada) {
+		prox_vitima->referenciada = 0;
+
+		go_to_next_memory_position();
+		substitute(page, id);
+	}
 
 	/* Se a página não foi referenciada, substitui ela */
-
-	/* Avança o ponteiro de próxima vítima em qualquer caso */
-
+	else {
+		memory->pages[count] = processes[id]->pages[page];
+	}
 }
 
 void find_page_and_maybe_substitute(int page, int id)
