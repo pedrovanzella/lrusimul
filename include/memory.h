@@ -1,7 +1,11 @@
 #ifndef _MEMORY_H_
 #define _MEMORY_H_
 
+#include "page.h"
+
 struct memory {
+	int size;
+	struct page* *pages;
 };
 
 struct memory* memory;

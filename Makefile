@@ -30,7 +30,7 @@ bin/process.o: src/process.c include/process.h include/page.h
 	$(CC) $(CFLAGS) -c src/process.c
 	mv process.o bin/process.o
 
-bin/memory.o: src/memory.c include/memory.h
+bin/memory.o: src/memory.c include/memory.h include/page.h
 	$(CC) $(CFLAGS) -c src/memory.c
 	mv memory.o bin/memory.o
 
