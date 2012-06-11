@@ -7,8 +7,8 @@ prepare:
 	mkdir -p bin
 	mkdir -p perf
 
-bin/lrusimul: bin/main.o bin/lrusimul.o bin/fifo.o bin/page.o bin/helpers.o
-	$(CC) $(CFLAGS) -o bin/lrusimul bin/main.o bin/lrusimul.o bin/fifo.o bin/page.o bin/helpers.o
+bin/lrusimul: bin/main.o bin/lrusimul.o bin/fifo.o bin/page.o bin/helpers.o bin/process.o
+	$(CC) $(CFLAGS) -o bin/lrusimul bin/main.o bin/lrusimul.o bin/fifo.o bin/page.o bin/helpers.o bin/process.o
 
 bin/main.o: src/main.c include/helpers.h include/lrusimul.h
 	$(CC) $(CFLAGS) -c src/main.c
@@ -29,6 +29,10 @@ bin/page.o: src/page.c include/page.h
 bin/helpers.o: src/helpers.c include/helpers.h
 	$(CC) $(CFLAGS) -c src/helpers.c
 	mv helpers.o bin/helpers.o
+
+bin/process.o: src/process.c include/process.h include/page.h
+	$(CC) $(CFLAGS) -c src/process.c
+	mv process.o bin/process.o
 
 clean:
 	rm -rf bin
