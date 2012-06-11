@@ -14,7 +14,7 @@ bin/main.o: src/main.c include/helpers.h include/lrusimul.h
 	$(CC) $(CFLAGS) -c src/main.c
 	mv main.o bin/main.o
 
-bin/lrusimul.o: src/lrusimul.c include/lrusimul.h include/fifo.h include/helpers.h
+bin/lrusimul.o: src/lrusimul.c include/lrusimul.h include/fifo.h include/helpers.h include/process.h
 	$(CC) $(CFLAGS) -c src/lrusimul.c
 	mv lrusimul.o bin/lrusimul.o
 

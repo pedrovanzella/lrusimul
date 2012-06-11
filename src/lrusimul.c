@@ -4,6 +4,7 @@
 #include "../include/fifo.h"
 #include "../include/helpers.h"
 #include "../include/lrusimul.h"
+#include "../include/process.h"
 
 #define MAX_PROCESSES 128
 
@@ -16,7 +17,7 @@ void memsize(int size)
 
 void procsize(int id, int size)
 {
-
+	processes[id] = create_process(id, size);
 }
 
 void read_p(int page, int id)
