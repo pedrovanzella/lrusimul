@@ -5,6 +5,10 @@
 #include "../include/helpers.h"
 #include "../include/lrusimul.h"
 
+#define MAX_PROCESSES 128
+
+struct process* processes[MAX_PROCESSES];
+
 void memsize(int size)
 {
 
