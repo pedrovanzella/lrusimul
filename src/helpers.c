@@ -3,6 +3,8 @@
 
 #include "../include/helpers.h"
 #include "../include/lrusimul.h"
+#include "../include/process.h"
+#include "../include/page.h"
 
 extern struct process* processes[];
 
@@ -145,6 +147,15 @@ void write_stats()
 	int i;
 	for (i = 0; i < MAX_PROCESSES; i++) {
 		if (processes[i]) { // Process has been allocated
+			fprintf(fp, "PROCESSO %d\n", processes[i]->id);
+			fprintf(fp, "Página\tAcessos (R/W)\tNroPageFault\tNroSubst\n");
+
+			int j;
+			for (j = 0; j < processes[i]->numpages; j++) {
+				fprintf(fp, "%d\t%d\t\t%d\t\t%d\n", processes[i]->pages[j]->page_id, processes[i]->pages[j]->acessos, processes[i]->pages[j]->page_faults, processes[i]->pages[j]->substituicoes);
+			}
+
+			fprintf(fp, "\n");
 		}
 	}
 }

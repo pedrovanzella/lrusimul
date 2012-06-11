@@ -22,7 +22,7 @@ bin/page.o: src/page.c include/page.h
 	$(CC) $(CFLAGS) -c src/page.c
 	mv page.o bin/page.o
 
-bin/helpers.o: src/helpers.c include/helpers.h
+bin/helpers.o: src/helpers.c include/helpers.h include/lrusimul.h include/process.h include/page.h
 	$(CC) $(CFLAGS) -c src/helpers.c
 	mv helpers.o bin/helpers.o
 
