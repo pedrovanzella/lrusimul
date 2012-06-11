@@ -126,6 +126,14 @@ void parse_endproc(char* buffer, int* id)
 	*id = atoi(i);
 }
 
+void init_process_table()
+{
+	int i;
+	for (i = 0; i < MAX_PROCESSES; i++) {
+		processes[i] = NULL; // Garantir que não aponta pra nenhum processo
+	}
+}
+
 void write_stats()
 {
 }

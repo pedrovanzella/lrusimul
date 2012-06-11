@@ -33,6 +33,8 @@ int main(int argc, char* argv[])
 	int w_id;
 	int e_id;
 
+	init_process_table();
+
 	/* Main loop */
 	while ((getline(&buffer, (size_t*)&nbytes, fp) != -1)) {
 

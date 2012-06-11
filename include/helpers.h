@@ -8,6 +8,7 @@ void parse_read(char* buffer, int* page, int* id);
 void parse_write(char* buffer, int* page, int* id);
 void parse_endproc(char* buffer, int* id);
 
+void init_process_table();
 void write_stats();
 
 #endif /* _HELPERS_H_ */
