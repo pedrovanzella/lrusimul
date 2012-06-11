@@ -8,7 +8,7 @@
 
 #define MAX_PROCESSES 128
 
-struct process* processes[MAX_PROCESSES];
+extern struct process* processes[MAX_PROCESSES];
 
 void memsize(int size)
 {

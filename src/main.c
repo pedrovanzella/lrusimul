@@ -78,7 +78,8 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	/* Write stats here? */
+	/* Write stats here */
+	write_stats();
 
 	fclose(fp);
 	return EXIT_SUCCESS;

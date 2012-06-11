@@ -1,6 +1,10 @@
-#include "../include/helpers.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "../include/helpers.h"
+#include "../include/lrusimul.h"
+
+extern struct process* processes[MAX_PROCESSES];
 
 void parse_memsize(char* buffer, int* size)
 {
@@ -122,3 +126,6 @@ void parse_endproc(char* buffer, int* id)
 	*id = atoi(i);
 }
 
+void write_stats()
+{
+}
