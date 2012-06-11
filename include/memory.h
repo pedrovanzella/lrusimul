@@ -17,5 +17,6 @@ struct memory* make_memory(int size);
  * procura a primeira página vazia e coloca ela lá.
  * Caso a memória esteja cheia, substitui alguma página */
 void find_page_and_maybe_substitute(int page, int id);
+void substitute(int page, int id);
 
 #endif /* _MEMORY_H_ */
