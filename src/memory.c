@@ -14,6 +14,7 @@ struct memory* make_memory(int size)
 	struct memory* m = (struct memory*)malloc(sizeof(struct memory));
 
 	m->size = size;
+	/* FIXME: Esse malloc tá errado, fool! */
 	m->pages = (struct page**)malloc(size * sizeof(struct page*));
 
 	int i;
@@ -70,11 +71,14 @@ void substitute(int page, int id)
 
 void find_page_and_maybe_substitute(int page, int id)
 {
+	printf("\t[+] find_page_and_maybe_substitute\n");
 	struct page* p;
 	/* Temos esta página na memória? */
 	int i;
 	for (i = 0; i < memory->size; i++) {
+		printf("[%d]\n", memory->pages[i]->process_id);
 		if ((memory->pages[i]->process_id == id) && (memory->pages[i]->page_id == page)) { // Achamos nossa página
+			printf("\t[+] Achei na posição %d\n", i);
 			p = memory->pages[i];
 			break; // Não precisamos mais buscar
 		}
