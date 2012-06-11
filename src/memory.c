@@ -16,3 +16,7 @@ struct memory* make_memory(int size)
 
 	return m;
 }
+
+void find_page_and_maybe_substitute(int page, int id)
+{
+}

@@ -21,12 +21,18 @@ void procsize(int id, int size)
 
 void read_p(int page, int id)
 {
+	processes[id]->pages[page]->acessos++;
+	processes[id]->pages[page]->referenciada = 1;
 
+	find_page_and_maybe_substitute(page, id);
 }
 
 void write_p(int page, int id)
 {
+	processes[id]->pages[page]->acessos++;
+	processes[id]->pages[page]->suja = 1;
 
+	find_page_and_maybe_substitute(page, id);
 }
 
 void endproc(int id)
@@ -42,4 +48,3 @@ void endproc(int id)
 		p->pages[i]->not_in_use_anymore = 1;
 	}
 }
-
