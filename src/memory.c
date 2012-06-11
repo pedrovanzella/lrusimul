@@ -32,6 +32,12 @@ void substitute(int page, int id)
 
 	/* Se próxima vítima foi desalocada, coloca a página na memória */
 
+	/* Se a página está referenciada, seta referenciada para zero */
+
+	/* Se a página não foi referenciada, substitui ela */
+
+	/* Avança o ponteiro de próxima vítima em qualquer caso */
+
 }
 
 void find_page_and_maybe_substitute(int page, int id)
