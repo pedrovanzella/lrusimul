@@ -5,9 +5,7 @@
 #include "../include/lrusimul.h"
 #include "../include/process.h"
 
-#define MAX_PROCESSES 128
-
-extern struct process* processes[MAX_PROCESSES];
+extern struct process* processes[];
 
 void memsize(int size)
 {
