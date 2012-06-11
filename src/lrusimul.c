@@ -21,18 +21,26 @@ void procsize(int id, int size)
 
 void read_p(int page, int id)
 {
-	processes[id]->pages[page]->acessos++;
-	processes[id]->pages[page]->referenciada = 1;
+	if (page >= processes[id]->numpages) {
+		fprintf(stderr, "[-] ERROR: Trying to access a page that does not belong to process!\n");
+	} else {
+		processes[id]->pages[page]->acessos++;
+		processes[id]->pages[page]->referenciada = 1;
 
-	find_page_and_maybe_substitute(page, id);
+		find_page_and_maybe_substitute(page, id);
+	}
 }
 
 void write_p(int page, int id)
 {
-	processes[id]->pages[page]->acessos++;
-	processes[id]->pages[page]->suja = 1;
+	if (page >= processes[id]->numpages) {
+		fprintf(stderr, "[-] ERROR: Trying to access a page that does not belong to process!\n");
+	} else {
+		processes[id]->pages[page]->acessos++;
+		processes[id]->pages[page]->suja = 1;
 
-	find_page_and_maybe_substitute(page, id);
+		find_page_and_maybe_substitute(page, id);
+	}
 }
 
 void endproc(int id)
