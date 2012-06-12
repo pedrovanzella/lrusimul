@@ -15,7 +15,6 @@ struct memory* make_memory(int size)
 
 	m->size = size;
 	/* FIXME: Esse malloc tá errado, fool! */
-	m->pages = (struct page**)malloc(size * sizeof(struct page*));
 
 	int i;
 	for (i = 0; i < size; i++) {

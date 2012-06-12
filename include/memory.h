@@ -2,10 +2,11 @@
 #define _MEMORY_H_
 
 #include "page.h"
+#define MAX_PAGES 2048
 
 struct memory {
 	int size;
-	struct page* *pages;
+	struct page* pages[MAX_PAGES];
 };
 
 struct memory* memory;
