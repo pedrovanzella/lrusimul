@@ -8,6 +8,7 @@
 struct page* prox_vitima;
 int count;
 extern struct process* processes[]; // Para marcar pagefaults
+extern struct memory* memory;
 
 struct memory* make_memory(int size)
 {
@@ -42,6 +43,7 @@ void substitute(int page, int id)
 	fflush(stdout);
 	/* Se próxima vítima é uma página vazia, coloca a página na memória */
 	if (!prox_vitima) {
+		printf("\t[+] substitute: Empty position at [%d]\n", count);
 		memory->pages[count] = processes[id]->pages[page];
 		
 		go_to_next_memory_position();
@@ -49,6 +51,7 @@ void substitute(int page, int id)
 
 	/* Se próxima vítima foi desalocada, coloca a página na memória */
 	else if (prox_vitima->not_in_use_anymore) {
+		printf("\t[+] substitute: Empty position at [%d] (Previously allocated)\n", count);
 		memory->pages[count] = processes[id]->pages[page];
 
 		go_to_next_memory_position();
@@ -56,6 +59,7 @@ void substitute(int page, int id)
 
 	/* Se a página está referenciada, seta referenciada para zero */
 	else if (prox_vitima->referenciada) {
+		printf("\t[+] substitute: Page's referenced bit set. Trying next.\n");
 		prox_vitima->referenciada = 0;
 
 		go_to_next_memory_position();
@@ -64,27 +68,29 @@ void substitute(int page, int id)
 
 	/* Se a página não foi referenciada, substitui ela */
 	else {
+		printf("\t[+] substitute: removing page from memory: [page (%d)] [id (%d)]\n", memory->pages[count]->page_id, memory->pages[count]->process_id);
+		memory->pages[count]->substituicoes++;
 		memory->pages[count] = processes[id]->pages[page];
 	}
 }
 
 void find_page_and_maybe_substitute(int page, int id)
 {
-	printf("\t[+] find_page_and_maybe_substitute\n");
-	struct page* p;
+	char achei = 0;
 	/* Temos esta página na memória? */
 	int i;
 	for (i = 0; i < memory->size; i++) {
-		printf("[%d]\n", memory->pages[i]->process_id);
-		if ((memory->pages[i]->process_id == id) && (memory->pages[i]->page_id == page)) { // Achamos nossa página
-			printf("\t[+] Achei na posição %d\n", i);
-			p = memory->pages[i];
-			break; // Não precisamos mais buscar
+		if (memory->pages[i]) { // Se a página está em memória
+			if ((memory->pages[i]->process_id == id) && (memory->pages[i]->page_id == page)) { // Achamos nossa página
+				achei = 1;
+				break; // Não precisamos mais buscar
+			}
 		}
 	}
 
 	/* Se não, temos que colocar ela na memória */
-	if (!p) { // Não temos p
+	if (!achei) { // Não temos p
+		processes[id]->pages[page]->page_faults++;
 		substitute(page, id); // Coloca essa página na memória
 	}
 }
