@@ -23,6 +23,8 @@ int main(int argc, char* argv[])
 	char* buffer;
 	int nbytes = 128;
 
+	buffer = (char*)malloc(2048*sizeof(char));
+
 	/* Parsing vars */
 	int m_size;
 	int p_id;

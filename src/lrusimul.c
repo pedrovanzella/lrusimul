@@ -23,6 +23,8 @@ void read_p(int page, int id)
 {
 	if (page >= processes[id]->numpages) {
 		fprintf(stderr, "[-] ERROR: Trying to access a page that does not belong to process!\n");
+	} else if (!processes[id]) {
+		fprintf(stderr, "[-] ERROR: Trying to access a procces that does not exist!\n");
 	} else {
 		processes[id]->pages[page]->acessos++;
 		processes[id]->pages[page]->referenciada = 1;
@@ -35,6 +37,8 @@ void write_p(int page, int id)
 {
 	if (page >= processes[id]->numpages) {
 		fprintf(stderr, "[-] ERROR: Trying to access a page that does not belong to process!\n");
+	} else if (!processes[id]) {
+		fprintf(stderr, "[-] ERROR: Trying to access a procces that does not exist!\n");
 	} else {
 		processes[id]->pages[page]->acessos++;
 		processes[id]->pages[page]->suja = 1;
